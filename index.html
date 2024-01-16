@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg">
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script type="module">
+        const response = await fetch("/wallpaper")
+        const wallpaper_url = await response.json()
+        document.querySelector("body").style.backgroundImage = `url(${wallpaper_url})`
+    </script>
+</head>
+
+<body>
+    <header>
+        <a href="/">
+            <h1>Homepage</h1>
+        </a>
+        <!-- form  -->
+        <div>
+        </div>
+    </header>
+</body>
+
+</html>
