@@ -2,8 +2,8 @@ use axum::{routing::get, Router};
 use config::AppConfig;
 use error::AppResult;
 use state::AppState;
-use tower_http::services::{ServeDir, ServeFile};
-use web::wallpaper_route;
+use tower_http::services::ServeDir;
+use web::{home_route, wallpaper_route};
 
 mod config;
 mod error;
@@ -12,7 +12,6 @@ mod web;
 
 // TODO:
 // - use a div for wallpaper to update opacity
-// - use a html templating engine of some kind
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
@@ -24,7 +23,7 @@ async fn main() -> AppResult<()> {
     let routes = Router::new()
         .route("/wallpaper", get(wallpaper_route::index))
         .nest_service("/assets", ServeDir::new("assets"))
-        .nest_service("/", ServeFile::new("index.html"))
+        .route("/", get(home_route::index))
         .with_state(state.clone());
 
     let app_port = config.app_port;
