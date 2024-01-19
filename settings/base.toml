@@ -1,0 +1,5 @@
+# the port on which the application will be running
+app_port = 3000
+
+# the unsplash collection id
+#collection_id = 1053828
