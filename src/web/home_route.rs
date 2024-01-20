@@ -1,10 +1,21 @@
 use askama::Template;
-use axum::response::IntoResponse;
+use axum::{extract::State, response::IntoResponse};
 
-pub async fn index() -> impl IntoResponse {
-    HomeTemplate
+use crate::state::AppState;
+
+pub async fn index(State(state): State<AppState>) -> impl IntoResponse {
+    let bg_opacity = state.config.wallpaper.opacity.unwrap_or(0.8);
+    let bg_blur = state.config.wallpaper.blur.unwrap_or(true);
+
+    HomeTemplate {
+        bg_opacity,
+        bg_blur,
+    }
 }
 
 #[derive(Template)]
 #[template(path = "index.html")]
-struct HomeTemplate;
+struct HomeTemplate {
+    bg_opacity: f32,
+    bg_blur: bool,
+}

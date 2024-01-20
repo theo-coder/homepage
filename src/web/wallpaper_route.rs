@@ -21,7 +21,7 @@ pub async fn index(State(state): State<AppState>) -> AppResult<String> {
         println!("new wallpaper requested");
     }
 
-    let collection_id = state.config.collection_id.unwrap_or(1053828);
+    let collection_id = state.config.wallpaper.collection_id.unwrap_or(1053828);
 
     let new_wallpaper = &state
         .http_client

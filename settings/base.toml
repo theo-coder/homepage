@@ -1,5 +1,12 @@
 # the port on which the application will be running
 app_port = 3000
 
+[wallpaper]
 # the unsplash collection id
 #collection_id = 1053828
+
+# wallpaper opacity
+#opacity = 0.8
+
+# wallpaper blur
+#blur = true

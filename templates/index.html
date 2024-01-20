@@ -10,19 +10,20 @@
     <script type="module">
         const response = await fetch("/wallpaper")
         const wallpaper_url = await response.json()
-        document.querySelector("body").style.backgroundImage = `url(${wallpaper_url})`
+        document.querySelector(".wallpaper").style.backgroundImage = `url(${wallpaper_url})`
     </script>
 </head>
 
 <body>
-    <header>
-        <a href="/">
-            <h1>Homepage</h1>
-        </a>
-        <!-- form  -->
-        <div>
-        </div>
-    </header>
+    <div class="wallpaper" style="opacity: {{bg_opacity}}; {% if bg_blur %}filter: blur(10px);{% endif %}"></div>
+    <!-- <header> -->
+    <!--     <a href="/"> -->
+    <!--         <h1>Homepage</h1> -->
+    <!--     </a> -->
+    <!--     <!-- form  -->
+    <!--     <div> -->
+    <!--     </div> -->
+    <!-- </header> -->
 </body>
 
 </html>

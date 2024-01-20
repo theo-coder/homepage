@@ -11,7 +11,17 @@ mod state;
 mod web;
 
 // TODO:
-// - use a div for wallpaper to update opacity
+// - refactor config with a validator method
+// - refactor to use constants for some variables
+// - add search bar
+// - handle search via google
+// - handle search via duckduckgo
+// - render search results
+// - prioritize stackoverflow / medium
+// - logs
+// - stats
+// - bangs shortcuts
+// - weather
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
