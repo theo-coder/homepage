@@ -11,19 +11,40 @@
         const response = await fetch("/wallpaper")
         const wallpaper_url = await response.json()
         document.querySelector(".wallpaper").style.backgroundImage = `url(${wallpaper_url})`
+
+        const form = document.getElementById("searchForm")
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const queryString = formData.get("q");
+
+            window.history.pushState("", "", `?q=${queryString}`);
+            searchResult()
+        })
+
+        function searchResult() {
+            const urlParams = new URLSearchParams(window.location.search)
+            const queryString = urlParams.get("q")
+
+            form.querySelector("input").value = queryString
+
+            console.log(queryString)
+        }
+
+        searchResult()
     </script>
 </head>
 
 <body>
     <div class="wallpaper" style="opacity: {{bg_opacity}}; {% if bg_blur %}filter: blur(10px);{% endif %}"></div>
-    <!-- <header> -->
-    <!--     <a href="/"> -->
-    <!--         <h1>Homepage</h1> -->
-    <!--     </a> -->
-    <!--     <!-- form  -->
-    <!--     <div> -->
-    <!--     </div> -->
-    <!-- </header> -->
+    <div class="container">
+        <form id="searchForm">
+            <input autofocus autocomplete="off" type="text" name="q" />
+            <button type="submit"><img src="/assets/images/searchIcon.svg" alt="searchIcon" /></button>
+        </form>
+    </div>
 </body>
 
 </html>
