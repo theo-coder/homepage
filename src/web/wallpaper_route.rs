@@ -3,7 +3,7 @@ use std::time::Duration;
 use axum::extract::State;
 use reqwest::header::AUTHORIZATION;
 
-use crate::{error::AppResult, state::AppState};
+use crate::{constants::WALLPAPER_COLLECTION_ID, error::AppResult, state::AppState};
 
 pub async fn index(State(state): State<AppState>) -> AppResult<String> {
     let mut cache = state.cache.lock().await;
@@ -21,7 +21,11 @@ pub async fn index(State(state): State<AppState>) -> AppResult<String> {
         println!("new wallpaper requested");
     }
 
-    let collection_id = state.config.wallpaper.collection_id.unwrap_or(1053828);
+    let collection_id = state
+        .config
+        .wallpaper
+        .collection_id
+        .unwrap_or(WALLPAPER_COLLECTION_ID);
 
     let new_wallpaper = &state
         .http_client

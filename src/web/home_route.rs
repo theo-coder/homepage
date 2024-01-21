@@ -1,15 +1,16 @@
 use askama::Template;
 use axum::{extract::State, response::IntoResponse};
 
-use crate::state::AppState;
+use crate::{constants, state::AppState};
 
 pub async fn index(State(state): State<AppState>) -> impl IntoResponse {
-    let bg_opacity = state.config.wallpaper.opacity.unwrap_or(0.8);
-    let bg_blur = state.config.wallpaper.blur.unwrap_or(true);
+    let wallpaper_config = state.config.wallpaper;
 
     HomeTemplate {
-        bg_opacity,
-        bg_blur,
+        bg_opacity: wallpaper_config
+            .opacity
+            .unwrap_or(constants::WALLPAPER_OPACITY),
+        bg_blur: wallpaper_config.blur.unwrap_or(constants::WALLPAPER_BLUR),
     }
 }
 

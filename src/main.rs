@@ -6,13 +6,12 @@ use tower_http::services::ServeDir;
 use web::{home_route, wallpaper_route};
 
 mod config;
+mod constants;
 mod error;
 mod state;
 mod web;
 
 // TODO:
-// - refactor config with a validator method
-// - refactor to use constants for some variables
 // - add search bar
 // - handle search via google
 // - handle search via duckduckgo
