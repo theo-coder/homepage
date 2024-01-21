@@ -1,9 +1,8 @@
 use std::{fs::File, io::Write, path::Path};
 
-use config::ConfigError;
 use serde::Deserialize;
 
-use crate::error::{AppError, AppResult};
+use crate::error::AppResult;
 
 use self::wallpaper::WallpaperConfig;
 
@@ -43,13 +42,7 @@ impl AppConfig {
             .add_source(config::File::from(config_file))
             .build()?;
 
-        if let Ok(Some(opacity)) = config.get::<Option<f32>>("wallpaper.opacity") {
-            if !(0. ..=1.).contains(&opacity) {
-                return Err(AppError::Config(ConfigError::Message(
-                    "wallpaper opacity must be between 0 and 1".to_string(),
-                )));
-            }
-        }
+        wallpaper::validate(&config)?;
 
         Ok(config.try_deserialize()?)
     }
