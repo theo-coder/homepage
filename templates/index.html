@@ -7,34 +7,7 @@
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg">
     <link rel="stylesheet" href="/assets/styles.css" type="text/css" media="all">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script type="module">
-        const response = await fetch("/wallpaper")
-        const wallpaper_url = await response.json()
-        document.querySelector(".wallpaper").style.backgroundImage = `url(${wallpaper_url})`
-
-        const form = document.getElementById("searchForm")
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-            const queryString = formData.get("q");
-
-            window.history.pushState("", "", `?q=${queryString}`);
-            searchResult()
-        })
-
-        function searchResult() {
-            const urlParams = new URLSearchParams(window.location.search)
-            const queryString = urlParams.get("q")
-
-            form.querySelector("input").value = queryString
-
-            console.log(queryString)
-        }
-
-        searchResult()
-    </script>
+    <script type="module" src="/assets/script.js"></script>
 </head>
 
 <body>

@@ -12,7 +12,6 @@ mod state;
 mod web;
 
 // TODO:
-// - add search bar
 // - handle search via google
 // - handle search via duckduckgo
 // - render search results
